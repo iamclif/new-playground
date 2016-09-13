@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="prism.css" >
+    <style>
+      b {
+        display: block;
+        width: 100%;
+        float: left;
+      }
+      b > div {
+        width:50px;
+        height: 50px;
+        border: 1px solid gray;
+        float: left;
+        margin: 10px;
+      }
+      #existingDiv {
+        float: left;
+        width: 100%;
+      }
+      #hiking {
+        float: left;
+        width: 100%;
+      }
+      #hiking p {
+        width: 100%;
+      }
+      p {
+        float: left;
+        margin: 10px;
+      }
+    </style>
+    <script src="prism.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+    <script type="text/babel">
+      for(let i= 0; i<5; i++){
+        var div = document.createElement('div');
+        div.onclick = function() {
+          alert("you clicked on a box #" + i);
+        };
+        document.getElementsByTagName('b')[0].appendChild(div);
+      }
+
+        function print(firstName) {
+            console.log(`Hello ${firstName}`);
+        }
+        print('Clif');
+
+        var cats = ['tabby', 'siamese', 'persian'];
+        var dogs = ['mutt', 'boxer', 'pug'];
+        var animals = ['whale', 'snake', ...cats, ...dogs, 'coyote', 'bear'];
+        console.log(animals);
+
+        var container = document.getElementById("existingDiv");
+
+        for (var item in animals) {
+            var paragraph = document.createElement("p");
+            paragraph.innerHTML = animals[item];
+            container.appendChild(paragraph);
+        }
+
+        function activity(foo='hiking', bar=3) {
+          var paragraph = document.createElement("p");
+          var string = `I am going ${foo} for ${bar} hours today`
+          var addToDom = document.getElementById('hiking');
+          paragraph.innerHTML = string
+          addToDom.appendChild(paragraph);
+
+          console.log(`I am going ${foo} for ${bar} hours today`);
+        }
+        
+        activity();
+
+        var person = {
+          first: 'Doug',
+          actions: ['bike', 'hike', 'run'],
+          printActions() {
+            this.actions.forEach(actions => {
+                var str = this.first + " likes to " + actions;
+                console.log(str)
+            });
+          }
+        };
+        person.printActions();
+
+
+
+    </script>
+    <title>ECMAScript 6</title>
+</head>
+<body>
+<header>
+    <h1>ECMAScript 6</h1>
+</header>
+
+<section>
+  <h2>Let</h2>
+  <p>click box</p>
+  <b></b>
+<pre>
+<code class="language-javascript">
+    for(let i = 0; i < 5; i++){
+        var div = document.createElement('div');
+        div.onclick = function() {
+          alert("you clicked on a box #" + i);
+        };
+        document.getElementsByTagName('b')[0].appendChild(div);
+      }
+
+</code>
+</pre>
+</section>
+
+
+<section>
+  <h2>Template Strings</h2>
+<pre>
+<code class="language-javascript">
+    function print(firstName) {
+      console.log(`Hello ${firstName}`);
+    }
+    print('Clif');
+</code>
+</pre>
+</section>
+
+
+<section>
+  <h2>The Spread Operators</h2>
+  <div id="existingDiv"></div>
+  <pre>
+<code class="language-javascript">
+var cats = ['tabby', 'siamese', 'persian'];
+var dogs = ['mutt', 'boxer', 'pug'];
+var animals = ['whale', 'snake', ...cats, ...dogs, 'coyote', 'bear'];
+
+var container = document.getElementById("existingDiv");
+for (var item in animals) {
+    var paragraph = document.createElement("p");
+    paragraph.innerHTML = animals[item];
+    container.appendChild(paragraph);
+}
+</code>
+</pre>
+</section>
+
+
+
+<section>
+  <h2>Default Parameter Values</h2>
+  <div id="hiking"></div>
+  <pre>
+<code class="language-javascript">
+function activity(foo='hiking', bar=3) {
+  var paragraph = document.createElement("p");
+  var string = `I am going ${foo} for ${bar} hours today`
+  var addToDom = document.getElementById('hiking');
+  paragraph.innerHTML = string
+  addToDom.appendChild(paragraph);
+}
+
+activity();
+</code>
+</pre>
+</section>
+
+
+
+<section>
+  <h2>Object Literals</h2>
+  <h3>old way</h3>
+<pre>
+<code class="language-javascript">
+
+var cat = {
+  meow: function(times){
+    console.log(Array(times).join('meow'));
+  },
+  purr: function(){
+    console.log(Array(times).join('purr'));
+  },
+  snore: function(){
+    console.log(Array(times).join('snore'));
+  }
+};
+cat.meow(5);
+cat.purr(5);
+cat.snore(5);
+
+</code>
+</pre>
+<h3>ECMAScript 6</h3>
+<p style="width: 100%;">note: the new method <code>.repeat()</code></p>
+<pre>
+<code class="language-javascript">
+
+var cat = {
+  meow(times) {
+    console.log("meow".repeat(times));
+  },
+  purr(times) {
+    console.log("purr".repeat(times));
+  },
+  snore(times) {
+    console.log("ZZZ".repeat(times));
+  }
+};
+
+cat.meow(3);
+cat.purr(4);
+cat.snore(5);
+
+</code>
+</pre>
+</section>
+
+
+
+<section>
+  <h2>Arrow Functions</h2>
+  <h3>ECMAScript 5</h3>
+<pre>
+<code class="language-javascript">
+
+  var studentList = function(students){
+    console.log(students);
+  }
+  studentList(['Me', 'you', 'them']);
+
+</code>
+</pre>
+<h3>ECMAScript 6</h3>
+<pre>
+<code class="language-javascript">
+
+  var studentList = students => console.log(students);
+
+  var teacherList = (new, old) => console.log(new, old);
+  
+  studentList(['Me', 'you', 'them']);
+
+</code>
+</pre>
+</section>
+
+
+<section>
+  <h2>Arrow Functions and "this" scope</h2>
+  <h3>ECMAScript 5</h3>
+<pre>
+<code class="language-javascript">
+
+var person = {
+  first: 'Doug',
+  actions: ['bike', 'hike', 'run'],
+  printActions: function(){
+    var _this = this;
+    this.actions.forEach(function(actions){
+        var str = _this.first + " likes to " + actions;
+        console.log(str)
+    });
+  }
+}; 
+or
+var person = {
+  first: 'Doug',
+  actions: ['bike', 'hike', 'run'],
+  printActions: function(){
+    this.actions.forEach(function(actions){
+        var str = _this.first + " likes to " + actions;
+        console.log(str)
+    }.bind(this));
+  }
+};
+person.printActions();
+
+</code>
+</pre>
+<h3>ECMAScript 6</h3>
+<pre>
+<code class="language-javascript">
+
+var person = {
+  first: 'Doug',
+  actions: ['bike', 'hike', 'run'],
+  printActions() {
+    this.actions.forEach(actions => {
+        var str = this.first + " likes to " + actions;
+        console.log(str)
+    });
+  }
+};
+person.printActions();
+  
+
+</code>
+</pre>
+</section>
+
+
+
+<section>
+  <h2>Destructuring Assignment</h2>
+  <h3>ECMAScript 5</h3>
+<pre>
+<code class="language-javascript">
+
+
+
+</code>
+</pre>
+<h3>ECMAScript 6</h3>
+<pre>
+<code class="language-javascript">
+
+
+  
+
+</code>
+</pre>
+</section>
+
+
+
+</body> 
+</html>

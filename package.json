@@ -1,0 +1,16 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Clif Jordan",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "webpack": "^1.13.2"
+  }
+}
