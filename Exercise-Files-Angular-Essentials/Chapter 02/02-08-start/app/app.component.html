@@ -1,0 +1,10 @@
+<section>
+    <header>
+        <h1>Media Watch List</h1>
+        <p class="description">Keeping track of the media I want to watch.</p>
+    </header>
+    <!-- [binding target]="binding source" -->
+    <media-item 
+        [mediaItemToWatch]="firstMediaItem"
+        (deleted)="onMediaItemDeleted($event)" ></media-item>
+</section>
