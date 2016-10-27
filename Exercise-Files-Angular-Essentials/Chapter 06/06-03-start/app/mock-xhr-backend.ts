@@ -51,7 +51,7 @@ export class MockXHRBackend {
                     this._deleteMediaItem(id);
                     responseOptions = new ResponseOptions({ status: 200 });
             }
-            
+
             var responseObject = new Response(responseOptions);
             responseObserver.next(responseObject);
             responseObserver.complete();
@@ -59,7 +59,7 @@ export class MockXHRBackend {
         });
         return { response };
     }
-    
+
     _deleteMediaItem(id) {
         var mediaItem = this._mediaItems.find(mediaItem => mediaItem.id === id);
         var index = this._mediaItems.indexOf(mediaItem);
@@ -67,7 +67,7 @@ export class MockXHRBackend {
             this._mediaItems.splice(index, 1);
         }
     }
-    
+
     _getNewId() {
         if (this._mediaItems.length > 0) {
             return Math.max.apply(Math, this._mediaItems.map(mediaItem => mediaItem.id)) + 1;

@@ -1,5 +1,7 @@
-import {Component} from 'angular2/core';
+import {Component, Inject} from 'angular2/core';
 import {Control, Validators, FormBuilder} from 'angular2/common';
+import {MediaItemService} from './media-item.service';
+import {LOOKUP_LISTS, lookupLists} from './providers';
 
 @Component({
     selector: 'media-item-form',
@@ -8,21 +10,23 @@ import {Control, Validators, FormBuilder} from 'angular2/common';
 })
 export class MediaItemFormComponent {
     form;
-    
-    constructor(private formBuilder: FormBuilder) {}
+
+    constructor(private formBuilder: FormBuilder,
+      private mediaItemService: MediaItemService,
+      @Inject(LOOKUP_LISTS) public lookupLists) {}
 
     ngOnInit() {
         this.form = this.formBuilder.group({
             'medium': new Control('Movies'),
             'name': new Control('', Validators.compose([
-                Validators.required, 
+                Validators.required,
                 Validators.pattern('[\\w\\-\\s\\/]+')
                 ])),
             'category': new Control(''),
             'year': new Control('', this.yearValidator)
         });
     }
-    
+
     yearValidator(control) {
         if (control.value.trim().length === 0) return null;
         var year = parseInt(control.value);
@@ -33,6 +37,6 @@ export class MediaItemFormComponent {
     }
 
     onSubmit(mediaItem) {
-        console.log(mediaItem);
+        this.mediaItemService.add(mediaItem);
     }
 }

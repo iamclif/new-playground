@@ -10,7 +10,7 @@ import {LOOKUP_LISTS} from './providers';
 })
 export class MediaItemFormComponent {
     form;
-    
+
     constructor(private formBuilder: FormBuilder,
         private mediaItemService: MediaItemService,
         @Inject(LOOKUP_LISTS) public lookupLists) {}
@@ -19,14 +19,14 @@ export class MediaItemFormComponent {
         this.form = this.formBuilder.group({
             'medium': new Control('Movies'),
             'name': new Control('', Validators.compose([
-                Validators.required, 
+                Validators.required,
                 Validators.pattern('[\\w\\-\\s\\/]+')
                 ])),
             'category': new Control(''),
             'year': new Control('', this.yearValidator)
         });
     }
-    
+
     yearValidator(control) {
         if (control.value.trim().length === 0) return null;
         var year = parseInt(control.value);
@@ -37,6 +37,6 @@ export class MediaItemFormComponent {
     }
 
     onSubmit(mediaItem) {
-        this.mediaItemService.add(mediaItem);
+        this.mediaItemService.add(mediaItem).subscribe() ;
     }
 }

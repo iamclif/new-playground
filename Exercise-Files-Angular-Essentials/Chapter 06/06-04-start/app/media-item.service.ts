@@ -1,29 +1,29 @@
 import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Http, URLSearchParams, Headers} from 'angular2/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MediaItemService {
     constructor(private http: Http) {}
-    
-    get() {
-        return this.http.get('mediaitems')
+
+    get(medium) {
+      var searchParams = new URLSearchParams();
+      searchParams.append('medium', medium);
+        return this.http.get('mediaitems', { search: searchParams })
             .map(response => {
                 return response.json().mediaItems;
             });
     }
-    
+
     add(mediaItem) {
-        this.mediaItems.push(mediaItem);
+      var headers = new Headers({'Content-Type': 'application/json'});
+      return this.http.post('mediaitems', JSON.stringify(mediaItem), { headers: headers }).map(response => {});
     }
-    
+
     delete(mediaItem) {
-        var index = this.mediaItems.indexOf(mediaItem);
-        if (index >= 0) {
-            this.mediaItems.splice(index, 1);
-        }
+      return this.http.delete(`mediaitems/${mediaItem.id}`).map(response => {})
     }
-    
+
     mediaItems = [
         {
             id: 1,
