@@ -1,0 +1,14 @@
+<h2>Quotes</h2>
+<ul class="heroes">
+  <li *ngFor="let quote of quotes"
+    [class.selected]="quote === selectedQuote"
+    (click)="onSelect(quote)">
+    <span class="badge">{{quote.id}}</span> {{quote.name}}
+  </li>
+</ul>
+<div *ngIf="selectedQuote">
+  <h2>
+    {{selectedQuote.name | uppercase}} is my hero
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>

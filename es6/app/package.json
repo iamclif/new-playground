@@ -1,0 +1,18 @@
+{
+  "name": "ecmasript6",
+  "version": "1.0.0",
+  "description": "playground",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Clif Jordan",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "node-sass": "^3.11.1",
+    "sass-loader": "^4.0.2",
+    "webpack": "^1.13.3"
+  }
+}

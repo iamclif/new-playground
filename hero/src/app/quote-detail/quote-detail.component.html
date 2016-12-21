@@ -1,0 +1,9 @@
+<div *ngIf="quote">
+  <h2>{{quote.name}} details!</h2>
+  <div><label>id: </label>{{quote.id}}</div>
+  <div>
+      <label>name: </label>
+      <input class="form-control" [(ngModel)]="quote.name" placeholder="name"/>
+      <button (click)="goBack()">Back</button>
+  </div>
+</div>

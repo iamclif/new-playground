@@ -1,0 +1,7 @@
+<h3>Dashboard</h3>
+<div class="grid grid-pad">
+  <div *ngFor="let quote of quotes" (click)="gotoDetail(quote)" class="col-1-4">
+    <div class="module hero">
+      <h4>{{quote.name}}</h4>
+  </div>
+</div>
